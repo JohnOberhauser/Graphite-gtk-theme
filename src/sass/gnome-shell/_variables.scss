@@ -15,7 +15,7 @@ $base_spacing: if($compact == 'false', 6px, 4px);
 // radiuses
 $circular_radius: 9999px;
 $base_radius: 2px;
-$window_radius: 6px;
+$window_radius: 0px;
 $menu_radius: $base_radius + $base_padding;
 $modal_radius: $menu_radius;
 
