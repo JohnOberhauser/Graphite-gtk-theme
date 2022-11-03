@@ -2,7 +2,7 @@ $dash_background_color: on($panel, track);
 $dash_placeholder_size: 32px;
 $dash_padding: 10px; // 10px
 $dash_spacing: 2px;
-$dash_bottom_margin: 16px;
+$dash_bottom_margin: 0px;
 $dash_border_radius: $base_radius + $dash_padding;
 
 #dash {

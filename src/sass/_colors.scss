@@ -10,55 +10,55 @@
 
 @function on($color, $state: 'primary') {
   // Allow 'light' or 'dark' to $color
-  @if ($color == 'light') { $color: white; }
-  @if ($color == 'dark') { $color: black; }
+  @if ($color == 'light') { $color: $white; }
+  @if ($color == 'dark') { $color: $black; }
 
   // Calculate color brightness according to https://www.w3.org/TR/AERT/#color-contrast
   $brightness: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
 
   @if ($brightness >= 156) {
-    @if ($state == 'primary') { @return rgba(black, 0.87); }
-    @if ($state == 'secondary') { @return rgba(black, 0.6); }
-    @if ($state == 'disabled') { @return rgba(black, 0.38); }
-    @if ($state == 'secondary-disabled') { @return rgba(black, 0.26); }
-    @if ($state == 'track') { @return rgba(black, 0.26); }
-    @if ($state == 'track-disabled') { @return rgba(black, 0.12); }
-    @if ($state == 'divider') { @return rgba(black, 0.12); }
-    @if ($state == 'secondary-fill') { @return rgba(black, 0.08); }
-    @if ($state == 'fill') { @return rgba(black, 0.04); }
+    @if ($state == 'primary') { @return rgba($black, 0.87); }
+    @if ($state == 'secondary') { @return rgba($black, 0.6); }
+    @if ($state == 'disabled') { @return rgba($black, 0.38); }
+    @if ($state == 'secondary-disabled') { @return rgba($black, 0.26); }
+    @if ($state == 'track') { @return rgba($black, 0.26); }
+    @if ($state == 'track-disabled') { @return rgba($black, 0.12); }
+    @if ($state == 'divider') { @return rgba($black, 0.12); }
+    @if ($state == 'secondary-fill') { @return rgba($black, 0.08); }
+    @if ($state == 'fill') { @return rgba($black, 0.04); }
   } @else {
-    @if ($state == 'primary') { @return white; }
-    @if ($state == 'secondary') { @return rgba(white, 0.7); }
-    @if ($state == 'disabled') { @return rgba(white, 0.5); }
-    @if ($state == 'secondary-disabled') { @return rgba(white, 0.3); }
-    @if ($state == 'track') { @return rgba(white, 0.3); }
-    @if ($state == 'track-disabled') { @return rgba(white, 0.12); }
-    @if ($state == 'divider') { @return rgba(white, 0.12); }
-    @if ($state == 'secondary-fill') { @return rgba(white, 0.08); }
-    @if ($state == 'fill') { @return rgba(white, 0.04); }
+    @if ($state == 'primary') { @return $white; }
+    @if ($state == 'secondary') { @return rgba($white, 1); }
+    @if ($state == 'disabled') { @return rgba($white, 0.5); }
+    @if ($state == 'secondary-disabled') { @return rgba($white, 0.3); }
+    @if ($state == 'track') { @return #000000; }
+    @if ($state == 'track-disabled') { @return rgba($white, 0.12); }
+    @if ($state == 'divider') { @return rgba($white, 0.12); }
+    @if ($state == 'secondary-fill') { @return rgba($white, 0.08); }
+    @if ($state == 'fill') { @return rgba($white, 0.04); }
   }
 }
 
 @function highlight($color) {
-  @if (lightness($color) >= 80%) { @return rgba(white, 0); }
-  @else if (lightness($color) >= 40%) { @return rgba(white, 0.2); }
-  @else { @return rgba(white, 0.1); }
+  @if (lightness($color) >= 80%) { @return rgba($white, 0); }
+  @else if (lightness($color) >= 40%) { @return rgba($white, 0.2); }
+  @else { @return rgba($white, 0.1); }
 }
 
 @function theme($color) {
   @if ($color_type == 'nord') {
     @if ($theme == 'default') {
-      @if ($variant == 'light') { @return #434c5e; }
-      @else { @return #dbdee5; }
+        @if ($variant == 'light') { @return #0C0E11; }
+        @else { @return #D0EBEE; }
     }
-    @if ($theme == 'purple')    { @return #b57daa; }
-    @if ($theme == 'pink')      { @return #cd7092; }
-    @if ($theme == 'red')       { @return #c35b65; }
-    @if ($theme == 'orange')    { @return #d0846c; }
-    @if ($theme == 'yellow')    { @return #e4b558; }
-    @if ($theme == 'green')     { @return #82ac5d; }
-    @if ($theme == 'teal')      { @return #83b9b8; }
-    @if ($theme == 'blue')      { @return #5e81ac; }
+  @if ($theme == 'purple')    { @return #52677C; }
+  @if ($theme == 'pink')      { @return #733447; }
+  @if ($theme == 'red')       { @return #733447; }
+  @if ($theme == 'orange')    { @return #733447; }
+  @if ($theme == 'yellow')    { @return #733447; }
+  @if ($theme == 'green')     { @return #257B76; }
+  @if ($theme == 'teal')      { @return #52677C; }
+  @if ($theme == 'blue')      { @return #52677C; }
   } @else {
     @if ($variant == 'light') {
       @if ($theme == 'default') { @return $grey-900; }
@@ -69,7 +69,7 @@
       @if ($theme == 'yellow')  { @return $yellow-700; }
       @if ($theme == 'green')   { @return $green-500; }
       @if ($theme == 'teal')    { @return $teal-500; }
-      @if ($theme == 'blue')    { @return #3684dd; }
+      @if ($theme == 'blue')    { @return $blue-100; }
     } @else {
       @if ($theme == 'default') { @return $grey-300; }
       @if ($theme == 'purple')  { @return $purple-300; }
@@ -79,7 +79,7 @@
       @if ($theme == 'yellow')  { @return $yellow-a700; }
       @if ($theme == 'green')   { @return $green-400; }
       @if ($theme == 'teal')    { @return $teal-300; }
-      @if ($theme == 'blue')    { @return #5294e2; }
+      @if ($theme == 'blue')    { @return $blue-100; }
     }
   }
 }
@@ -103,29 +103,29 @@
       @if ($type == 'h') { @return #404859; }
     }
   } @else {
-    @if ($type == 'a') { @return #FFFFFF; }
-    @if ($type == 'b') { @return #FAFAFA; }
-    @if ($type == 'c') { @return #F2F2F2; }
-    @if ($type == 'd') { @return #CCCCCC; }
+      @if ($type == 'a') { @return #D0EBEE; }
+  @if ($type == 'b') { @return #D0EBEE; }
+  @if ($type == 'c') { @return #D0EBEE; }
+  @if ($type == 'd') { @return #D0EBEE; }
 
     @if ($color_type == 'blackness') {
-      @if ($type == 'e') { @return #000000; }
-      @if ($type == 'f') { @return #030303; }
-      @if ($type == 'g') { @return #0F0F0F; }
-      @if ($type == 'h') { @return #121212; }
+        @if ($type == 'e') { @return #0C0E11; }
+    @if ($type == 'f') { @return #0C0E11; }
+    @if ($type == 'g') { @return #0C0E11; }
+    @if ($type == 'h') { @return #0C0E11; }
     }
 
     @if ($color_type == 'default') {
       @if ($darker == 'true') {
-        @if ($type == 'e') { @return #0A0A0A; }
-        @if ($type == 'f') { @return #141414; }
-        @if ($type == 'g') { @return #1F1F1F; }
-        @if ($type == 'h') { @return #292929; }
+          @if ($type == 'e') { @return #0C0E11; }
+      @if ($type == 'f') { @return #0C0E11; }
+      @if ($type == 'g') { @return #0C0E11; }
+      @if ($type == 'h') { @return #0C0E11; }
       } @else {
-        @if ($type == 'e') { @return #212121; }
-        @if ($type == 'f') { @return #242424; }
-        @if ($type == 'g') { @return #2C2C2C; }
-        @if ($type == 'h') { @return #3C3C3C; }
+          @if ($type == 'e') { @return #0C0E11; }
+      @if ($type == 'f') { @return #0C0E11; }
+      @if ($type == 'g') { @return #0C0E11; }
+      @if ($type == 'h') { @return #0C0E11; }
       }
     }
   }
@@ -148,8 +148,8 @@ $primary:                               theme(color);
 $drop_target_color:                     $deep-orange-400;
 $indicator:                             theme(color);
 $titlebar-indicator:                    if($variant == 'dark', currentColor, $primary);
-$inverse-indicator:                     if($theme == 'default', white, $primary);
-$applet-primary:                        if($topbar == 'dark' and $theme == 'default' and $variant == 'light', #DDDDDD, $primary);
+$inverse-indicator:                     if($theme == 'default', $white, $primary);
+$applet-primary:                        if($topbar == 'dark' and $theme == 'default' and $variant == 'light', $white, $primary);
 $titlebar-primary:                      if($topbar == 'dark' and $theme == 'default' and $variant == 'light', if($color_type == 'nord', #dbdee5, #e0e0e0), $primary);
 
 $background:                            if($variant == 'light', background(a), background(g));
@@ -161,7 +161,7 @@ $tooltip:                               if($variant == 'dark', rgba(darken(backg
 $osd:                                   background(e);
 $scrim:                                 background(f);
 $scrim-alt:                             background(g);
-$scrim-inverse:                         rgba(white, 0.1);
+$scrim-inverse:                         rgba($white, 0.1);
 $titlebar:                              if($topbar == 'dark', background(g), background(a));
 $titlebar-backdrop:                     if($topbar == 'dark', background(g), background(a));
 $popover:                               $base;
@@ -185,10 +185,10 @@ $success:                               if($variant == 'light', #0F9D58, #81C995
 $suggested:                             $primary;
 $destructive:                           $error;
 
-$frame:                                 if($variant == 'light', rgba(black, 0.12), rgba(black, 0.20));
-$border:                                if($variant == 'light', rgba(black, 0.12), rgba(white, 0.12));
+$frame:                                 if($variant == 'light', rgba($black, 0.12), rgba($black, 0.20));
+$border:                                if($variant == 'light', rgba($black, 0.12), rgba($white, 0.12));
 $solid-border:                          if($variant == 'light', darken($background, 12%), lighten($background, 12%));
-$border-alt:                            rgba(black, 0.16); // darker border color for Chrome and Firefox
+$border-alt:                            rgba($black, 0.16); // darker border color for Chrome and Firefox
 
 //
 // Overlay state colors
@@ -234,4 +234,4 @@ $panel-divider:                         on($panel, divider);
 $panel-fill:                            on($panel, fill);
 
 // workaround for GTK3 @placeholder_text_color which doesn't allow translucent colors
-$placeholder_text_color:                if($variant == 'light', mix(black, $base, percentage(0.6)), mix(white, $base, percentage(0.7)));
+$placeholder_text_color:                if($variant == 'light', mix($black, $base, percentage(0.6)), mix($white, $base, percentage(0.7)));
