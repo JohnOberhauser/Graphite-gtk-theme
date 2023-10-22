@@ -118,11 +118,6 @@
     .nautilus-list-view {
       background-color: transparent;
       border-radius: $window-radius;
-
-      treeview.view:not(:hover):not(:active):not(:selected) {
-        background-color: transparent;
-        border-radius: 0;
-      }
     }
 
     notebook {
@@ -347,9 +342,9 @@
 
 // View
 // Hide superfluous treeview drop target indication
-.nautilus-list-view .view:not(.dnd) {
-  // border-bottom: 1px solid $divider;
-}
+// .nautilus-list-view .view:not(.dnd) {
+//   border-bottom: 1px solid $divider;
+// }
 
 .search-information {
   padding: 2px;
@@ -463,10 +458,6 @@ window.org-gnome-gedit {
 
         > scrolledwindow { // raised widget
           border-bottom-left-radius: $window-radius;
-
-          treeview.view:not(:hover):not(:selected) {
-            background: none;
-          }
         }
       }
 
@@ -518,7 +509,12 @@ window.org-gnome-gedit {
 }
 
 .gedit-search-slider {
-  margin: 4px 4px 8px;
+  margin: 0 6px 8px;
+  padding: $space-size;
+  background-color: $base;
+  color: $text;
+  box-shadow: $shadow-z4;
+  border-radius: 0 0 $window-radius $window-radius;
 
   .linked:not(.vertical) > entry {
     border-radius: $corner-radius;
@@ -562,7 +558,10 @@ window.org-gnome-gedit {
 
   .linked > button {
     border: solid $space-size transparent;
-    border-radius: $circular-radius;
+
+    &, &:first-child, &:last-child {
+      border-radius: $circular-radius;
+    }
 
     @extend %button-flat-simple;
     @extend %small-button;
@@ -625,6 +624,7 @@ frame.gedit-map-frame > border {
 .tweak-categories {
   // padding: 4px 0;
   // background-color: shade(@theme_bg_color, 0.99);
+  background-color: transparent;
 
   separator { @extend %hide_separators; }
 
@@ -635,6 +635,10 @@ frame.gedit-map-frame > border {
   .csd.maximized &, .csd.tiled & {
     border-bottom-left-radius: 0;
   }
+}
+
+leaflet > box > scrolledwindow > viewport.frame > list.navigation-sidebar {
+  background-color: transparent;
 }
 
 .tweak {
@@ -866,14 +870,11 @@ hdyleaflet, leaflet, box.horizontal > stack.background {
 
   frame.view {
     @extend %circular_list;
+    border: none;
 
     list {
       background: none;
-
-      > separator {
-        background: none;
-        min-height: 0;
-      }
+      border: none;
 
       row.activatable { @extend %circular_row; }
     }
@@ -895,13 +896,6 @@ window#gnome-system-monitor.background.csd {
     border-radius: 0 0 $window-radius $window-radius;
 
     > box.vertical {
-      > scrolledwindow {
-        treeview.view:not(.progressbar):not(.trough) {
-          background: none;
-          @extend .view;
-        }
-      }
-
       > revealer > actionbar > revealer > box {
         border-radius: 0 0 $window-radius $window-radius;
       }
@@ -1337,9 +1331,9 @@ pillbox {
   border-radius: $corner-radius;
 }
 
-buildperspective row {
-  // padding: 10px;
-}
+// buildperspective row {
+//   padding: 10px;
+// }
 
 layoutpane entry.search {
   border-bottom: 1px solid $divider;
@@ -1369,9 +1363,9 @@ docktabstrip {
   min-height: 39px;
 }
 
-eggsearchbar entry {
-  // min-height: 24px;
-}
+// eggsearchbar entry {
+//   min-height: 24px;
+// }
 
 window.workbench preferences preferencesgroup list entry {
   // background: none;
@@ -1495,9 +1489,6 @@ GdMainIconView.content-view {
   frame.content-view > border { border-style: none; }
 }
 
-.photos-icon-bg {
-}
-
 .photos-fade-in {
   opacity: 1;
   transition: opacity $duration $ease-out;
@@ -1506,9 +1497,6 @@ GdMainIconView.content-view {
 .photos-fade-out {
   opacity: 0;
   transition: opacity $duration $ease-out;
-}
-
-.photos-collection-icon {
 }
 
 button.photos-filter-preview {
@@ -1618,12 +1606,6 @@ box.vertical > revealer > toolbar.search-bar {
  * Document Viewer *
  *******************/
 window.background.csd {
-  > box.vertical {
-    > paned.horizontal > box.vertical > scrolledwindow {
-      > treeview.view:not(:hover):not(:selected) { background-color: transparent; }
-    }
-  }
-
   evview.view.content-view {
     border-radius: 0 0 $window-radius $window-radius;
 
@@ -1642,34 +1624,12 @@ window.background.csd {
     > scrolledwindow {
       border-radius: 0 0 $window-radius $window-radius;
       background-color: $base;
-
-      treeview.view:not(:hover):not(:selected) {
-        background-color: transparent;
-      }
     }
 
     > box.vertical {
       > scrolledwindow {
         border-radius: 0 0 0 $window-radius;
         background-color: $background;
-
-        treeview.view:not(:hover):not(:selected) {
-          background-color: transparent;
-        }
-      }
-    }
-  }
-}
-
-
-/**************
- * Gnome Disk *
- **************/
-window.background.csd {
-  > box.vertical > paned.horizontal {
-    > scrolledwindow {
-      treeview.view:not(:selected):not(:hover) {
-        background-color: transparent;
       }
     }
   }
@@ -1793,6 +1753,20 @@ tasklistview {
 frame.taskbar > border { border-style: solid none none; }
 
 box.vertical > paned.horizontal notebook widget .frame { border-style: none; }
+
+
+/*********************************
+ * Archive Manager (File roller) *
+ *********************************/
+window.background.csd {
+  > grid.horizontal > paned.horizontal {
+    > scrolledwindow {
+      > treeview.view:not(:selected):not(:hover):not(.progressbar):not(.expander):not(.trough):not(.separator) {
+        background-color: $base;
+      }
+    }
+  }
+}
 
 
 /***********
@@ -2025,7 +1999,11 @@ window.background.csd {
  ***********/
 dialog.background.csd {
   > headerbar.titlebar {
-    box-shadow: inset 0 -1px $border;
+    @if $rimless == 'true' {
+      box-shadow: inset 0 -1px $border, inset 0 1px highlight($titlebar);
+    } @else {
+      box-shadow: inset 0 -1px $border;
+    }
   }
 
   > box.vertical.dialog-vbox {
@@ -2062,12 +2040,6 @@ dialog.background.csd {
         }
       }
 
-      > box.vertical > stack.view {
-        > scrolledwindow > treeview.view:not(:hover):not(:selected):not(:active) {
-          background-color: transparent;
-        }
-      }
-
       toolbar.toolbar {
         border-radius: 0 0 $window-radius $window-radius;
       }
@@ -2091,8 +2063,6 @@ dialog.background.csd {
           background: none;
         }
       }
-
-      treeview.view:not(:hover):not(:selected) { background: none; }
     }
 
     viewport.frame {
