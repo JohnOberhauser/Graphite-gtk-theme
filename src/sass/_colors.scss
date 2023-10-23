@@ -98,31 +98,7 @@ $theme_blue_color:    if($variant == 'light', #3684dd, #5294e2);
       @if ($type == 'h') { @return #404859; }
     }
   } @else {
-      @if ($type == 'a') { @return #D0EBEE; }
-  @if ($type == 'b') { @return #D0EBEE; }
-  @if ($type == 'c') { @return #D0EBEE; }
-  @if ($type == 'd') { @return #D0EBEE; }
-
-    @if ($color_type == 'blackness') {
-        @if ($type == 'e') { @return #0C0E11; }
-    @if ($type == 'f') { @return #0C0E11; }
-    @if ($type == 'g') { @return #0C0E11; }
-    @if ($type == 'h') { @return #0C0E11; }
-    }
-
-    @if ($color_type == 'default') {
-      @if ($darker == 'true') {
-          @if ($type == 'e') { @return #0C0E11; }
-      @if ($type == 'f') { @return #0C0E11; }
-      @if ($type == 'g') { @return #0C0E11; }
-      @if ($type == 'h') { @return #0C0E11; }
-      } @else {
-          @if ($type == 'e') { @return #0C0E11; }
-      @if ($type == 'f') { @return #0C0E11; }
-      @if ($type == 'g') { @return #0C0E11; }
-      @if ($type == 'h') { @return #0C0E11; }
-      }
-    }
+    @return #0C0E11;
   }
 }
 
@@ -153,10 +129,6 @@ $surface:                               if($variant == 'light', background(a), b
 $base:                                  if($variant == 'light', background(a), background(g));
 $base-alt:                              if($variant == 'light', background(b), background(f));
 $sidebg:                                if($variant == 'light', background(b), background(f));
-
-@if $sidebar == 'styled' {
-  $sidebg:                              if($variant == 'light', background(h), background(d));
-}
 
 $login-background:                      if($variant == 'light', background(d), background(g)); // For gnome-shell
 
